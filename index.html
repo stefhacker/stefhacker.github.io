@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { max-width: 400px; margin: auto; }
+        label, textarea { display: block; width: 100%; }
+        textarea { height: 100px; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+<h1>Vote and Submit Your Text</h1>
+<form id="voteForm">
+    <label for="vote">Vote for your favorite option:</label>
+    <select id="vote" name="vote">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+    <label for="comment">Your Text:</label>
+    <textarea id="comment" name="comment"></textarea>
+    <button type="submit">Submit</button>
+</form>
+<div id="response"></div>
+<script>
+    document.getElementById('voteForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const vote = document.getElementById('vote').value;
+        const comment = document.getElementById('comment').value;
+        fetch('https://your-serverless-function-url', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ vote, comment })
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').textContent = 'Thank you for your submission!';
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = 'Error: ' + error.message;
+            });
+    });
+</script>
+</body>
+</html>
