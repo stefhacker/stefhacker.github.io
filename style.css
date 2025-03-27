@@ -3,11 +3,11 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #000000;
 }
 
 header {
-    background: #007bff;
+    background: #042a53;
     color: white;
     padding: 20px;
 }
@@ -15,7 +15,7 @@ header {
 button {
     padding: 10px 20px;
     margin-top: 20px;
-    background: #28a745;
+    background: #a72828;
     color: white;
     border: none;
     cursor: pointer;
