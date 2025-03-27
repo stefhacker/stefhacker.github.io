@@ -3,67 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Form</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .rating-buttons { display: flex; justify-content: space-between; max-width: 300px; margin: 20px auto; }
-        .rating-buttons button { padding: 10px 20px; font-size: 16px; }
-        form { max-width: 400px; margin: auto; }
-        label, textarea { display: block; width: 100%; }
-        textarea { height: 100px; }
-        button { margin-top: 10px; }
-        .hidden { display: none; }
-    </style>
+    <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Rate Our Service</h1>
-    <div class="rating-buttons">
-        <button data-value="1">1 (Bad)</button>
-        <button data-value="2">2</button>
-        <button data-value="3">3</button>
-        <button data-value="4">4</button>
-        <button data-value="5">5 (Very Good)</button>
-    </div>
-    <form id="feedbackForm" class="hidden">
-        <input type="hidden" id="rating" name="rating">
-        <label for="comment">Your Comments:</label>
-        <textarea id="comment" name="comment"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="response"></div>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <p>A simple website hosted on GitHub Pages.</p>
+    </header>
 
-    <script>
-        const ratingButtons = document.querySelectorAll('.rating-buttons button');
-        const feedbackForm = document.getElementById('feedbackForm');
-        const ratingInput = document.getElementById('rating');
+    <main>
+        <button onclick="sayHello()">Click Me</button>
+    </main>
 
-        ratingButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                ratingInput.value = button.getAttribute('data-value');
-                feedbackForm.classList.remove('hidden');
-            });
-        });
-
-        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const rating = document.getElementById('rating').value;
-            const comment = document.getElementById('comment').value;
-            fetch('http://your-ngrok-url/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ rating, comment })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('response').textContent = 'Thank you for your feedback!';
-                feedbackForm.reset();
-                feedbackForm.classList.add('hidden');
-            })
-            .catch(error => {
-                document.getElementById('response').textContent = 'Error: ' + error.message;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
